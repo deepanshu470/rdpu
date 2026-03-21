@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">DK Assistant</string>
+
+    <!-- Owner -->
+    <string name="owner_name">Deepanshu</string>
+
+    <!-- Main Activity -->
+    <string name="dashboard_title">DK Assistant Dashboard</string>
+    <string name="welcome_message">Welcome, Boss!</string>
+    <string name="status_operational">All systems operational</string>
+    <string name="status_permissions_needed">Permissions required</string>
+    <string name="status_active">DK Assistant is active</string>
+    <string name="status_inactive">DK Assistant is inactive</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone">Microphone Access</string>
+    <string name="permission_camera">Camera Access</string>
+    <string name="permission_notification">Notification Access</string>
+    <string name="permission_overlay">Display Over Apps</string>
+    <string name="permission_service">Assistant Service</string>
+
+    <string name="permission_desc_microphone">Required for voice recognition and wake word detection</string>
+    <string name="permission_desc_camera">Required for flashlight control</string>
+    <string name="permission_desc_notification">Required to read and respond to messages</string>
+    <string name="permission_desc_overlay">Required for floating widget</string>
+
+    <!-- Buttons -->
+    <string name="btn_configure_ai">Configure AI Brain</string>
+    <string name="btn_view_history">View History</string>
+    <string name="btn_test_voice">Test Voice</string>
+    <string name="btn_start_service">Start Service</string>
+    <string name="btn_stop_service">Stop Service</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_close">Close</string>
+
+    <!-- AI Configuration -->
+    <string name="ai_config_title">AI Brain Configuration</string>
+    <string name="ai_provider">AI Provider</string>
+    <string name="ai_provider_openai">OpenAI</string>
+    <string name="ai_provider_claude">Claude</string>
+    <string name="ai_api_key">API Key</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_test">Test Connection</string>
+
+    <!-- Authentication -->
+    <string name="auth_title">Owner Verification</string>
+    <string name="auth_subtitle">Authenticate to continue</string>
+    <string name="auth_description">This action requires owner authentication</string>
+    <string name="auth_use_pin">Use PIN</string>
+    <string name="auth_pin_prompt">Enter PIN</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">DK Assistant Service</string>
+    <string name="notification_channel_desc">Background service for voice listening</string>
+    <string name="notification_title">DK Assistant</string>
+    <string name="notification_listening">Listening for wake word…</string>
+    <string name="notification_processing">Processing command…</string>
+
+    <!-- Voice Commands -->
+    <string name="voice_wake_word">DK</string>
+    <string name="voice_greeting">Yes Boss, how can I help you?</string>
+    <string name="voice_error">Sorry Boss, I didn\'t catch that.</string>
+    <string name="voice_thinking">Let me think about that, Boss.</string>
+
+    <!-- Messages -->
+    <string name="msg_new_message">Boss, you have a new message on %1$s from %2$s</string>
+    <string name="msg_opening_app">Opening %1$s for you, Boss.</string>
+    <string name="msg_app_not_installed">Sorry Boss, %1$s is not installed.</string>
+    <string name="msg_flashlight_on">Flashlight turned on, Boss.</string>
+    <string name="msg_flashlight_off">Flashlight turned off, Boss.</string>
+
+    <!-- Errors -->
+    <string name="error_permissions">Please grant all required permissions</string>
+    <string name="error_api_key">API key not configured</string>
+    <string name="error_network">Network connection error</string>
+    <string name="error_service">Service error occurred</string>
+
+    <!-- History -->
+    <string name="history_empty">No conversation history yet</string>
+    <string name="history_cleared">History cleared</string>
+
+    <!-- Settings -->
+    <string name="settings_owner">Owner Settings</string>
+    <string name="settings_change_pin">Change PIN</string>
+    <string name="settings_reset">Reset to Default</string>
+</resources>

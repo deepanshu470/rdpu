@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="API Key"
+        style="@style/BodyText"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_api_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your API key"
+        android:inputType="textPassword"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_tertiary"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AI Provider"
+        style="@style/BodyText"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/rg_provider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_openai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ai_provider_openai"
+            android:textColor="@color/text_primary"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rb_claude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ai_provider_claude"
+            android:textColor="@color/text_primary" />
+    </RadioGroup>
+</LinearLayout>
