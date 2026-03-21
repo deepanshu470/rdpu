@@ -53,7 +53,11 @@ class ProductModel {
 
     public function create($data) {
         $products = $this->readAll();
-        $data['id'] = count($products) > 0 ? max(array_column($products, 'id')) + 1 : 1;
+        $existingIds = array_column($products, 'id');
+        $data['id'] = count($existingIds) > 0 ? max($existingIds) + 1 : 1;
+        while (in_array($data['id'], $existingIds)) {
+            $data['id']++;
+        }
         $products[] = $data;
         $this->writeAll($products);
         return $data;

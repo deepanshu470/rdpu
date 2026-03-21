@@ -45,7 +45,11 @@ class OfferModel {
 
     public function create($data) {
         $offers = $this->readAll();
-        $data['id'] = count($offers) > 0 ? max(array_column($offers, 'id')) + 1 : 1;
+        $existingIds = array_column($offers, 'id');
+        $data['id'] = count($existingIds) > 0 ? max($existingIds) + 1 : 1;
+        while (in_array($data['id'], $existingIds)) {
+            $data['id']++;
+        }
         $offers[] = $data;
         $this->writeAll($offers);
         return $data;

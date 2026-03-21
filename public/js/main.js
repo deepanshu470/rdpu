@@ -20,7 +20,7 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   const productId = btn.dataset.id;
   const qtyInput = document.querySelector(`#qty-${productId}`);
-  const quantity = qtyInput ? qtyInput.value : 1;
+  const quantity = Math.min(Math.max(parseInt(qtyInput ? qtyInput.value : 1, 10) || 1, 1), 20);
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
   const formData = new FormData();
