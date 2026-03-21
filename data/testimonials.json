@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Rekha Khanna",
+    "location": "Delhi",
+    "rating": 5,
+    "text": "I have been ordering Mango Achar from Achar for over a year now and it tastes just like my mother's recipe! The quality is consistently excellent and the packaging keeps it fresh for months. Highly recommend to anyone who loves authentic homemade flavors.",
+    "avatar": "RK"
+  },
+  {
+    "id": 2,
+    "name": "Suresh Iyer",
+    "location": "Chennai",
+    "rating": 5,
+    "text": "The Gongura Pickle is absolutely authentic Andhra-style - sour, spicy, and perfectly balanced. Living in Chennai, I was craving proper Gongura pickle and Achar delivered exactly what I was looking for. Will order again without hesitation.",
+    "avatar": "SI"
+  },
+  {
+    "id": 3,
+    "name": "Priya Malhotra",
+    "location": "Mumbai",
+    "rating": 4,
+    "text": "Ordered the Mixed Vegetable Pickle and the Lemon Pickle combo - both were fantastic! The vegetables are crunchy, the masala is well-balanced, and there are no artificial preservatives. Fast delivery and great packaging too.",
+    "avatar": "PM"
+  },
+  {
+    "id": 4,
+    "name": "Amit Sharma",
+    "location": "Jaipur",
+    "rating": 5,
+    "text": "As a Rajasthani, I am very particular about my pickles and Achar has won my heart. The Garlic Pickle is exceptional - deeply flavored and made with real quality ingredients. My whole family is now hooked on it!",
+    "avatar": "AS"
+  },
+  {
+    "id": 5,
+    "name": "Deepika Nair",
+    "location": "Kochi",
+    "rating": 4,
+    "text": "I was skeptical about ordering pickles online but my first order from Achar changed my mind completely. The Tomato Pickle is exactly like the South Indian style I grew up eating. Fresh, tangy, and absolutely delicious with dosa.",
+    "avatar": "DN"
+  },
+  {
+    "id": 6,
+    "name": "Rohit Gupta",
+    "location": "Lucknow",
+    "rating": 5,
+    "text": "The Maharashtrian Methamba is something I have never tasted before and it is simply outstanding! The sweet-sour-bitter combination is unique and addictive. Achar truly represents the diversity of Indian pickle traditions.",
+    "avatar": "RG"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Welcome Offer",
+    "description": "Get 10% off on your first order. No minimum order value required!",
+    "discount": 10,
+    "code": "PICKLE10",
+    "image": "hero-achar.svg",
+    "active": true,
+    "minOrder": 0
+  },
+  {
+    "id": 2,
+    "title": "Save 15% Today",
+    "description": "Order pickles worth ₹500 or more and save 15% with this special code.",
+    "discount": 15,
+    "code": "SAVE15",
+    "image": "hero-achar.svg",
+    "active": true,
+    "minOrder": 500
+  },
+  {
+    "id": 3,
+    "title": "Festival Special",
+    "description": "Celebrate festivals with authentic pickles! Enjoy 25% off on all orders during the festive season.",
+    "discount": 25,
+    "code": "FESTIVAL25",
+    "image": "hero-achar.svg",
+    "active": true,
+    "minOrder": 300
+  },
+  {
+    "id": 4,
+    "title": "First Order Discount",
+    "description": "New to Achar? Use this code for an exclusive 20% off on your first purchase above ₹200.",
+    "discount": 20,
+    "code": "FIRST20",
+    "image": "hero-achar.svg",
+    "active": false,
+    "minOrder": 200
+  }
+]
