@@ -43,6 +43,23 @@ class CheckoutController {
             exit;
         }
 
+        // Additional format validation
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Invalid email format';
+        }
+        if (!preg_match('/^[6-9]\d{9}$/', $_POST['phone'])) {
+            $errors[] = 'Invalid phone number (must be 10-digit Indian mobile)';
+        }
+        if (!preg_match('/^\d{6}$/', $_POST['pincode'])) {
+            $errors[] = 'Invalid pincode (must be 6 digits)';
+        }
+
+        if (!empty($errors)) {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => implode(', ', $errors)];
+            header('Location: ' . BASE_URL . '?page=checkout');
+            exit;
+        }
+
         $couponDiscount = 0;
         if (!empty($_POST['coupon'])) {
             $offerModel = new OfferModel();

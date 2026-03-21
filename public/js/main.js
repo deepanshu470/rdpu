@@ -42,7 +42,8 @@ document.addEventListener('click', function(e) {
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error('Cart add error:', err);
       showToast('Network error. Please try again.', 'error');
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
@@ -75,24 +76,13 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// Coupon validation
-const VALID_COUPONS = { 'PICKLE10': 10, 'SAVE15': 15, 'FIRST20': 20, 'FESTIVAL25': 25 };
-function validateCoupon(code) {
-  const upper = code.toUpperCase().trim();
-  if (VALID_COUPONS[upper]) {
-    showToast(`🎉 Coupon applied! ${VALID_COUPONS[upper]}% off`, 'success');
-    return VALID_COUPONS[upper];
-  } else {
-    showToast('Invalid coupon code', 'error');
-    return 0;
-  }
-}
+// Coupon UX feedback — actual validation happens server-side in CheckoutController
 const couponBtn = document.getElementById('apply-coupon');
 if (couponBtn) {
   couponBtn.addEventListener('click', function() {
-    const code = document.getElementById('coupon-input')?.value || '';
-    if (code.trim()) {
-      validateCoupon(code);
+    const code = (document.getElementById('coupon-input')?.value || '').trim();
+    if (code) {
+      showToast('Coupon will be applied at checkout', 'success');
     } else {
       showToast('Please enter a coupon code', 'error');
     }
