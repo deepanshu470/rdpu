@@ -12,6 +12,7 @@ import android.speech.tts.TextToSpeech
 import androidx.core.app.NotificationCompat
 import com.deepanshu.dkassistant.R
 import com.deepanshu.dkassistant.manager.AIBrainManager
+import com.deepanshu.dkassistant.manager.OfflineAIBrainManager
 import com.deepanshu.dkassistant.manager.BiometricAuthManager
 import com.deepanshu.dkassistant.ui.MainActivity
 import kotlinx.coroutines.*
@@ -45,6 +46,7 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var tts: TextToSpeech
     private lateinit var aiBrainManager: AIBrainManager
+    private lateinit var offlineAIBrainManager: OfflineAIBrainManager
     private lateinit var cameraManager: CameraManager
     private lateinit var wakeLock: PowerManager.WakeLock
 
@@ -52,6 +54,8 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
     private var isTtsReady = false
     private var isFlashlightOn = false
     private var cameraId: String? = null
+    private var useOfflineMode = true // Default to offline mode
+    private var useHindiLanguage = false
 
     private val serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val handler = Handler(Looper.getMainLooper())
@@ -62,8 +66,9 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
         // Initialize TTS
         tts = TextToSpeech(this, this)
 
-        // Initialize AI Brain
+        // Initialize AI Brain (both online and offline)
         aiBrainManager = AIBrainManager(this)
+        offlineAIBrainManager = OfflineAIBrainManager(this)
 
         // Initialize Camera Manager for flashlight
         cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
@@ -109,7 +114,14 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts.setLanguage(Locale.US)
+            // Support both English and Hindi
+            val localeToUse = if (useHindiLanguage) {
+                Locale("hi", "IN")
+            } else {
+                Locale.US
+            }
+
+            val result = tts.setLanguage(localeToUse)
             isTtsReady = result != TextToSpeech.LANG_MISSING_DATA &&
                         result != TextToSpeech.LANG_NOT_SUPPORTED
 
@@ -118,7 +130,12 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
             tts.setSpeechRate(1.0f)
 
             if (isTtsReady) {
-                speak("DK Assistant initialized. Say DK to activate me.")
+                val message = if (useHindiLanguage) {
+                    "DK Assistant taiyaar hai. DK bolkar mujhe activate karein."
+                } else {
+                    "DK Assistant initialized. Say DK to activate me."
+                }
+                speak(message)
             }
         }
     }
@@ -313,17 +330,43 @@ class DKAssistantService : Service(), TextToSpeech.OnInitListener {
     }
 
     private fun handleAIQuery(query: String) {
-        speak("Let me think about that, Boss.")
+        if (useOfflineMode) {
+            // Use offline AI brain - no API needed
+            val response = offlineAIBrainManager.getOfflineResponse(query)
+            speak(response)
 
-        serviceScope.launch {
-            try {
-                val response = aiBrainManager.getAIResponse(query)
-                speak(response)
-            } catch (e: Exception) {
-                speak("Sorry Boss, I'm having trouble connecting to my brain right now.")
-                e.printStackTrace()
+            // Check if it's a memory store request
+            val lowerQuery = query.lowercase()
+            if (lowerQuery.contains("save") || lowerQuery.contains("remember") ||
+                lowerQuery.contains("yaad rakh")) {
+                // This is a memory storage intent
+                handleMemoryStorage(query)
+            }
+        } else {
+            // Use online AI brain (original behavior)
+            speak("Let me think about that, Boss.")
+
+            serviceScope.launch {
+                try {
+                    val response = aiBrainManager.getAIResponse(query)
+                    speak(response)
+                } catch (e: Exception) {
+                    // Fallback to offline mode
+                    val offlineResponse = offlineAIBrainManager.getOfflineResponse(query)
+                    speak(offlineResponse)
+                    e.printStackTrace()
+                }
             }
         }
+    }
+
+    private fun handleMemoryStorage(query: String) {
+        // Extract key-value from voice command
+        // Example: "Remember my birthday is 15th January"
+        // This is a simplified implementation
+        speak("Yes Boss, I'm listening. What should I remember?")
+        // In a real implementation, you'd listen for the next response
+        // and call offlineAIBrainManager.storeMemory(key, value)
     }
 
     private fun speak(text: String) {
